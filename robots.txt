@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mahmoud3d2y.github.io/mick-portfolio/sitemap.xml
