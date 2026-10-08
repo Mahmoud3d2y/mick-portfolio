@@ -11,6 +11,13 @@ js/main.js        Scripts
 assets/images/    Images
 ```
 
+## Editing content
+
+- **Projects:** edit the `PROJECTS` list at the top of `js/main.js`. Add screenshots to `assets/images/` and set `image` to their path.
+- **Hero words:** edit `ROLES` in `js/main.js`.
+- **About, skills and contact:** edit the text in `index.html`.
+- **Colors and fonts:** edit the variables at the top of `css/style.css`.
+
 ## Run locally
 
 Open `index.html` in a browser.
