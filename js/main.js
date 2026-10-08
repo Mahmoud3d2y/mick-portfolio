@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Mick — Aircraft Cleaning Specialist
+   Mikael Abuye — Aircraft Cleaning Specialist
    Site scripts (vanilla JS, no dependencies)
 
    1. Settings  ← edit these

@@ -1,6 +1,6 @@
-# Mick — Aircraft Cleaning Specialist
+# Mikael Abuye (Mick) — Aircraft Cleaning Specialist
 
-Portfolio website for Mick, an aircraft cleaning specialist. Plain HTML, CSS and vanilla JavaScript: no frameworks and no build step.
+Portfolio website for Mikael Abuye (Mick), an aircraft cleaning specialist. Plain HTML, CSS and vanilla JavaScript: no frameworks and no build step.
 
 Live: https://mahmoud3d2y.github.io/mick-portfolio/
 
