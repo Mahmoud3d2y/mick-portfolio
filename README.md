@@ -10,6 +10,7 @@ Live: https://mahmoud3d2y.github.io/mick-portfolio/
 index.html               The whole page (must stay at the root for hosting)
 css/style.css            All styles; colors and fonts are variables at the top
 js/main.js               All scripts; settings are at the top
+js/i18n.js               French translations + language switch
 assets/
   icons/favicon.svg      Browser tab icon
   images/before.svg      Before/after slider images (placeholders)
@@ -37,12 +38,22 @@ Everything you need to change is marked with an `EDIT:` comment in `index.html`.
 
 **Photo tips:** use JPG or WebP, about 1600px wide for before/after and 1200px for the gallery, and compress them (for example with squoosh.app) so the site stays fast.
 
+### English / French
+
+The site has an FR/EN button. English is written in `index.html`; French is in the `FR` list in `js/i18n.js`, matched by the `data-i18n="key"` on each element.
+
+**When you change a text in `index.html`, change its French version in `js/i18n.js` too** (search for the same key). The first visit uses the browser's language; after that, the visitor's choice is remembered.
+
 ### Contact form
 
 GitHub Pages can't send email by itself, so pick one option in `SETTINGS` at the top of `js/main.js`:
 
 - **`formEndpoint` (recommended):** create a free form at [formspree.io](https://formspree.io) and paste its URL. Messages go to your inbox and the visitor stays on the page.
 - **`contactEmail`:** the form opens the visitor's own email app with the message filled in.
+
+### After changing CSS or JS
+
+Bump the `?v=` number on the `style.css`, `i18n.js` and `main.js` links in `index.html` (e.g. `?v=3` → `?v=4`) so returning visitors get the new files instead of a cached copy.
 
 ## Run locally
 

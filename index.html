@@ -42,7 +42,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css">
+  <!-- ?v=N forces browsers to fetch fresh files: bump N whenever CSS/JS changes -->
+  <link rel="stylesheet" href="css/style.css?v=3">
 
   <!-- Runs before paint: enables animations and applies the saved theme (no flash) -->
   <script>
@@ -82,22 +83,24 @@
        Sticky navigation
        ====================================================================== -->
   <header class="header" id="top">
-    <nav class="nav container" aria-label="Main">
-      <a class="logo" href="#top" aria-label="Mikael Abuye, back to top">
+    <nav class="nav container" aria-label="Main" data-i18n-attr="aria-label:nav.label">
+      <a class="logo" href="#top" aria-label="Mikael Abuye, back to top" data-i18n-attr="aria-label:nav.logo">
         <svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg>
         MIKAEL ABUYE
       </a>
 
       <ul class="nav-links" id="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#results">Results</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#services" data-i18n="nav.services">Services</a></li>
+        <li><a href="#results" data-i18n="nav.results">Results</a></li>
+        <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+        <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+        <li><a href="#contact" class="nav-cta" data-i18n="nav.contact">Contact</a></li>
       </ul>
 
       <div class="nav-actions">
+        <!-- Language switch: shows the language you can switch TO -->
+        <button class="lang-toggle" type="button" aria-label="Passer en français" lang="fr">FR</button>
         <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode">
           <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
           <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
@@ -125,39 +128,39 @@
       <div class="hero-overlay" aria-hidden="true"></div>
 
       <div class="hero-content container">
-        <p class="eyebrow hero-anim">Aircraft Cleaning Specialist</p>
-        <h1 class="hero-title hero-anim" id="hero-title">
+        <p class="eyebrow hero-anim" data-i18n="role">Aircraft Cleaning Specialist</p>
+        <h1 class="hero-title hero-anim" id="hero-title" data-i18n="hero.title">
           Every aircraft,<br>
           <span>spotless and flight&#8209;ready.</span>
         </h1>
-        <p class="hero-sub hero-anim">
+        <p class="hero-sub hero-anim" data-i18n="hero.sub">
           Exterior washing, cabin cleaning and detailing carried out to aviation
           safety standards, with precision on every panel and on time for every departure.
         </p>
         <div class="hero-actions hero-anim">
-          <a class="btn btn-light" href="#contact">Request a quote</a>
+          <a class="btn btn-light" href="#contact" data-i18n="hero.quote">Request a quote</a>
           <!-- Put your CV at assets/cv/mick-cv.pdf. If it's missing, this button turns into "Request CV". -->
           <a class="btn btn-outline-light cv-btn" href="assets/cv/mick-cv.pdf" download>
             <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
-            <span>Download CV</span>
+            <span class="cv-label">Download CV</span>
           </a>
         </div>
       </div>
 
-      <a class="scroll-cue" href="#values" aria-label="Scroll to content"><span></span></a>
+      <a class="scroll-cue" href="#values" aria-label="Scroll to content" data-i18n-attr="aria-label:hero.scroll"><span></span></a>
     </section>
 
     <!-- ====================================================================
          Core values strip
          ==================================================================== -->
-    <section class="values" id="values" aria-label="Core values">
+    <section class="values" id="values" aria-label="Core values" data-i18n-attr="aria-label:values.label">
       <ul class="values-list container">
-        <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>Safety First</li>
-        <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg>Attention to Detail</li>
-        <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>On-Time Service</li>
-        <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Industry Standards</li>
-        <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-target"/></svg>Precision Cleaning</li>
-        <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg>Professionalism</li>
+        <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span data-i18n="values.safety">Safety First</span></li>
+        <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg><span data-i18n="values.detail">Attention to Detail</span></li>
+        <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span data-i18n="values.ontime">On-Time Service</span></li>
+        <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="values.standards">Industry Standards</span></li>
+        <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-target"/></svg><span data-i18n="values.precision">Precision Cleaning</span></li>
+        <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg><span data-i18n="values.pro">Professionalism</span></li>
       </ul>
     </section>
 
@@ -167,24 +170,24 @@
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="container about-grid">
         <figure class="about-photo reveal">
-          <img src="assets/images/mikael-abuye.jpg" alt="Portrait of Mikael Abuye, smiling" width="720" height="900" loading="lazy" decoding="async">
+          <img src="assets/images/mikael-abuye.jpg" alt="Portrait of Mikael Abuye, smiling" data-i18n-attr="alt:about.photoAlt" width="720" height="900" loading="lazy" decoding="async">
           <figcaption>
             <strong>Mikael Abuye</strong>
-            <span>Aircraft Cleaning Specialist</span>
+            <span data-i18n="role">Aircraft Cleaning Specialist</span>
           </figcaption>
         </figure>
 
         <div class="about-text">
-          <p class="kicker reveal">About Mikael</p>
-          <h2 class="section-title reveal" id="about-title">Clean aircraft are safe aircraft.</h2>
+          <p class="kicker reveal" data-i18n="about.kicker">About Mikael</p>
+          <h2 class="section-title reveal" id="about-title" data-i18n="about.title">Clean aircraft are safe aircraft.</h2>
           <!-- EDIT: rewrite these paragraphs in your own words -->
-          <p class="reveal">
+          <p class="reveal" data-i18n="about.p1">
             I'm Mikael Abuye, or Mick, an aircraft cleaning specialist. My job is to make sure every
             aircraft I work on looks its best and meets the safety and quality
             standards the aviation industry demands, from the fuselage and wings
             to every seat, galley and lavatory in the cabin.
           </p>
-          <p class="reveal">
+          <p class="reveal" data-i18n="about.p2">
             I work methodically, follow airside safety procedures to the letter and
             treat every aircraft as if passengers were boarding in the next hour,
             because they often are.
@@ -194,22 +197,22 @@
 
       <div class="container">
         <!-- Animated statistics. EDIT: set data-target to your real numbers. -->
-        <ul class="stats" aria-label="Key figures">
+        <ul class="stats" aria-label="Key figures" data-i18n-attr="aria-label:stats.label">
           <li class="stat reveal">
             <strong><span class="counter" data-target="5">5</span>+</strong>
-            <span>Years of experience</span>
+            <span data-i18n="stats.years">Years of experience</span>
           </li>
           <li class="stat reveal">
             <strong><span class="counter" data-target="500">500</span>+</strong>
-            <span>Aircraft cleaned</span>
+            <span data-i18n="stats.aircraft">Aircraft cleaned</span>
           </li>
           <li class="stat reveal">
             <strong><span class="counter" data-target="100">100</span>%</strong>
-            <span>Safety compliance</span>
+            <span data-i18n="stats.safety">Safety compliance</span>
           </li>
           <li class="stat reveal">
             <strong><span class="counter" data-target="98">98</span>%</strong>
-            <span>On-time turnarounds</span>
+            <span data-i18n="stats.ontime">On-time turnarounds</span>
           </li>
         </ul>
       </div>
@@ -221,35 +224,35 @@
     <section class="section section-alt" id="services" aria-labelledby="services-title">
       <div class="container">
         <div class="section-head">
-          <p class="kicker reveal">Services</p>
-          <h2 class="section-title reveal" id="services-title">Complete care, nose to tail.</h2>
+          <p class="kicker reveal" data-i18n="services.kicker">Services</p>
+          <h2 class="section-title reveal" id="services-title" data-i18n="services.title">Complete care, nose to tail.</h2>
         </div>
 
         <div class="services-grid">
           <article class="card service reveal">
             <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div>
-            <h3>Aircraft Exterior Cleaning</h3>
-            <p>Fuselage, wings, empennage and landing gear washed with approved products to remove dirt, exhaust residue and bugs without harming paint or sensors.</p>
+            <h3 data-i18n="s1.title">Aircraft Exterior Cleaning</h3>
+            <p data-i18n="s1.desc">Fuselage, wings, empennage and landing gear washed with approved products to remove dirt, exhaust residue and bugs without harming paint or sensors.</p>
           </article>
           <article class="card service reveal">
             <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-seat"/></svg></div>
-            <h3>Cabin Cleaning</h3>
-            <p>Turnaround and overnight cabin cleans covering seats, tray tables, carpets, galleys, lavatories and overhead bins, ready for the next boarding.</p>
+            <h3 data-i18n="s2.title">Cabin Cleaning</h3>
+            <p data-i18n="s2.desc">Turnaround and overnight cabin cleans covering seats, tray tables, carpets, galleys, lavatories and overhead bins, ready for the next boarding.</p>
           </article>
           <article class="card service reveal">
             <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></div>
-            <h3>Deep Cleaning</h3>
-            <p>Scheduled deep cleans and disinfection that reach the hidden areas: seat tracks, sidewall panels, air vents and high-touch surfaces.</p>
+            <h3 data-i18n="s3.title">Deep Cleaning</h3>
+            <p data-i18n="s3.desc">Scheduled deep cleans and disinfection that reach the hidden areas: seat tracks, sidewall panels, air vents and high-touch surfaces.</p>
           </article>
           <article class="card service reveal">
             <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg></div>
-            <h3>Detailing</h3>
-            <p>Polishing, brightwork, leather care and finishing touches that restore a showroom look for business jets and VIP interiors.</p>
+            <h3 data-i18n="s4.title">Detailing</h3>
+            <p data-i18n="s4.desc">Polishing, brightwork, leather care and finishing touches that restore a showroom look for business jets and VIP interiors.</p>
           </article>
           <article class="card service reveal">
             <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></div>
-            <h3>Safety Procedures</h3>
-            <p>Strict adherence to airside rules, PPE, chemical handling and manufacturer guidelines, so the job is done safely and the aircraft is never put at risk.</p>
+            <h3 data-i18n="s5.title">Safety Procedures</h3>
+            <p data-i18n="s5.desc">Strict adherence to airside rules, PPE, chemical handling and manufacturer guidelines, so the job is done safely and the aircraft is never put at risk.</p>
           </article>
         </div>
       </div>
@@ -261,22 +264,22 @@
     <section class="section" id="results" aria-labelledby="results-title">
       <div class="container">
         <div class="section-head">
-          <p class="kicker reveal">Results</p>
-          <h2 class="section-title reveal" id="results-title">See the difference.</h2>
-          <p class="section-sub reveal">Drag the handle, or use the arrow keys, to compare before and after.</p>
+          <p class="kicker reveal" data-i18n="results.kicker">Results</p>
+          <h2 class="section-title reveal" id="results-title" data-i18n="results.title">See the difference.</h2>
+          <p class="section-sub reveal" data-i18n="results.sub">Drag the handle, or use the arrow keys, to compare before and after.</p>
         </div>
 
         <!-- EDIT: replace both images with your own photos of the SAME spot, same angle.
              Put them in assets/images/ and update the src values. -->
         <div class="compare reveal" style="--pos: 50%">
-          <img class="compare-img" src="assets/images/before.svg" alt="Aircraft surface before cleaning" width="1200" height="700" loading="lazy">
+          <img class="compare-img" src="assets/images/before.svg" alt="Aircraft surface before cleaning" data-i18n-attr="alt:results.beforeAlt" width="1200" height="700" loading="lazy">
           <div class="compare-after">
-            <img class="compare-img" src="assets/images/after.svg" alt="The same aircraft surface after cleaning" width="1200" height="700" loading="lazy">
+            <img class="compare-img" src="assets/images/after.svg" alt="The same aircraft surface after cleaning" data-i18n-attr="alt:results.afterAlt" width="1200" height="700" loading="lazy">
           </div>
-          <span class="compare-label compare-label-before" aria-hidden="true">Before</span>
-          <span class="compare-label compare-label-after" aria-hidden="true">After</span>
+          <span class="compare-label compare-label-before" aria-hidden="true" data-i18n="results.before">Before</span>
+          <span class="compare-label compare-label-after" aria-hidden="true" data-i18n="results.after">After</span>
           <div class="compare-handle" aria-hidden="true"><span></span></div>
-          <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Before and after comparison: slide to reveal the cleaned surface">
+          <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Before and after comparison: slide to reveal the cleaned surface" data-i18n-attr="aria-label:results.range">
         </div>
       </div>
     </section>
@@ -287,47 +290,47 @@
     <section class="section section-alt" id="experience" aria-labelledby="experience-title">
       <div class="container exp-grid">
         <div>
-          <p class="kicker reveal">Experience</p>
-          <h2 class="section-title reveal" id="experience-title">Where I've worked.</h2>
+          <p class="kicker reveal" data-i18n="exp.kicker">Experience</p>
+          <h2 class="section-title reveal" id="experience-title" data-i18n="exp.title">Where I've worked.</h2>
 
           <!-- EDIT: replace with your real roles, employers and dates -->
           <ol class="timeline">
             <li class="reveal">
-              <span class="timeline-date">20XX – Present</span>
-              <h3>Aircraft Cleaning Specialist</h3>
-              <p class="timeline-org">Company name · Airport</p>
-              <p>Exterior and cabin cleaning for commercial aircraft, quality checks before release, and training new team members on safety procedures.</p>
+              <span class="timeline-date" data-i18n="exp.job1.date">20XX – Present</span>
+              <h3 data-i18n="role">Aircraft Cleaning Specialist</h3>
+              <p class="timeline-org" data-i18n="exp.org">Company name · Airport</p>
+              <p data-i18n="exp.job1.desc">Exterior and cabin cleaning for commercial aircraft, quality checks before release, and training new team members on safety procedures.</p>
             </li>
             <li class="reveal">
               <span class="timeline-date">20XX – 20XX</span>
-              <h3>Aircraft Cabin Cleaner</h3>
-              <p class="timeline-org">Company name · Airport</p>
-              <p>Turnaround and overnight cabin cleaning to airline standards within tight ground-time windows.</p>
+              <h3 data-i18n="exp.job2.title">Aircraft Cabin Cleaner</h3>
+              <p class="timeline-org" data-i18n="exp.org">Company name · Airport</p>
+              <p data-i18n="exp.job2.desc">Turnaround and overnight cabin cleaning to airline standards within tight ground-time windows.</p>
             </li>
           </ol>
         </div>
 
         <div>
-          <p class="kicker reveal">Certifications</p>
-          <h2 class="section-title reveal">Trained to standard.</h2>
+          <p class="kicker reveal" data-i18n="certs.kicker">Certifications</p>
+          <h2 class="section-title reveal" data-i18n="certs.title">Trained to standard.</h2>
 
           <!-- EDIT: list only certifications you actually hold -->
           <ul class="certs">
             <li class="cert reveal">
               <svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>
-              <div><h3>Airside Safety Awareness</h3><p>Issuing body · Year</p></div>
+              <div><h3 data-i18n="certs.c1">Airside Safety Awareness</h3><p data-i18n="certs.issuer">Issuing body · Year</p></div>
             </li>
             <li class="cert reveal">
               <svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>
-              <div><h3>Hazardous Materials Handling</h3><p>Issuing body · Year</p></div>
+              <div><h3 data-i18n="certs.c2">Hazardous Materials Handling</h3><p data-i18n="certs.issuer">Issuing body · Year</p></div>
             </li>
             <li class="cert reveal">
               <svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>
-              <div><h3>Airport Security Awareness</h3><p>Issuing body · Year</p></div>
+              <div><h3 data-i18n="certs.c3">Airport Security Awareness</h3><p data-i18n="certs.issuer">Issuing body · Year</p></div>
             </li>
             <li class="cert reveal">
               <svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>
-              <div><h3>First Aid at Work</h3><p>Issuing body · Year</p></div>
+              <div><h3 data-i18n="certs.c4">First Aid at Work</h3><p data-i18n="certs.issuer">Issuing body · Year</p></div>
             </li>
           </ul>
         </div>
@@ -340,34 +343,34 @@
     <section class="section" id="process" aria-labelledby="process-title">
       <div class="container">
         <div class="section-head">
-          <p class="kicker reveal">Work Process</p>
-          <h2 class="section-title reveal" id="process-title">Four steps, zero shortcuts.</h2>
+          <p class="kicker reveal" data-i18n="process.kicker">Work Process</p>
+          <h2 class="section-title reveal" id="process-title" data-i18n="process.title">Four steps, zero shortcuts.</h2>
         </div>
 
         <ol class="process">
           <li class="step reveal">
             <span class="step-num">01</span>
             <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
-            <h3>Inspection</h3>
-            <p>Walk-around to assess the aircraft, note damage and sensitive areas, and plan the clean.</p>
+            <h3 data-i18n="p1.title">Inspection</h3>
+            <p data-i18n="p1.desc">Walk-around to assess the aircraft, note damage and sensitive areas, and plan the clean.</p>
           </li>
           <li class="step reveal">
             <span class="step-num">02</span>
             <svg class="icon" aria-hidden="true"><use href="#i-spray"/></svg>
-            <h3>Cleaning</h3>
-            <p>Methodical cleaning with approved products and techniques, following every safety procedure.</p>
+            <h3 data-i18n="p2.title">Cleaning</h3>
+            <p data-i18n="p2.desc">Methodical cleaning with approved products and techniques, following every safety procedure.</p>
           </li>
           <li class="step reveal">
             <span class="step-num">03</span>
             <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
-            <h3>Quality Check</h3>
-            <p>Detailed inspection against a checklist. Anything below standard is redone on the spot.</p>
+            <h3 data-i18n="p3.title">Quality Check</h3>
+            <p data-i18n="p3.desc">Detailed inspection against a checklist. Anything below standard is redone on the spot.</p>
           </li>
           <li class="step reveal">
             <span class="step-num">04</span>
             <svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg>
-            <h3>Delivery</h3>
-            <p>Aircraft handed back clean, documented and on schedule, ready for the next flight.</p>
+            <h3 data-i18n="p4.title">Delivery</h3>
+            <p data-i18n="p4.desc">Aircraft handed back clean, documented and on schedule, ready for the next flight.</p>
           </li>
         </ol>
       </div>
@@ -379,23 +382,23 @@
     <section class="section section-alt" id="gallery" aria-labelledby="gallery-title">
       <div class="container">
         <div class="section-head">
-          <p class="kicker reveal">Gallery</p>
-          <h2 class="section-title reveal" id="gallery-title">Work in focus.</h2>
+          <p class="kicker reveal" data-i18n="gallery.kicker">Gallery</p>
+          <h2 class="section-title reveal" id="gallery-title" data-i18n="gallery.title">Work in focus.</h2>
         </div>
 
         <!-- EDIT: put your photos in assets/images/gallery/ and update src + alt + caption -->
         <ul class="gallery">
-          <li class="reveal"><button type="button" class="gallery-item" data-caption="Exterior wash"><img src="assets/images/gallery/placeholder.svg" alt="Exterior wash" width="800" height="600" loading="lazy"></button></li>
-          <li class="reveal"><button type="button" class="gallery-item" data-caption="Cabin turnaround"><img src="assets/images/gallery/placeholder.svg" alt="Cabin turnaround" width="800" height="600" loading="lazy"></button></li>
-          <li class="reveal"><button type="button" class="gallery-item" data-caption="Engine cowling detail"><img src="assets/images/gallery/placeholder.svg" alt="Engine cowling detail" width="800" height="600" loading="lazy"></button></li>
-          <li class="reveal"><button type="button" class="gallery-item" data-caption="Galley deep clean"><img src="assets/images/gallery/placeholder.svg" alt="Galley deep clean" width="800" height="600" loading="lazy"></button></li>
-          <li class="reveal"><button type="button" class="gallery-item" data-caption="Business jet detailing"><img src="assets/images/gallery/placeholder.svg" alt="Business jet detailing" width="800" height="600" loading="lazy"></button></li>
-          <li class="reveal"><button type="button" class="gallery-item" data-caption="Final quality check"><img src="assets/images/gallery/placeholder.svg" alt="Final quality check" width="800" height="600" loading="lazy"></button></li>
+          <li class="reveal"><button type="button" class="gallery-item" data-caption="Exterior wash" data-i18n-attr="data-caption:gallery.g1"><img src="assets/images/gallery/placeholder.svg" alt="Exterior wash" data-i18n-attr="alt:gallery.g1" width="800" height="600" loading="lazy"></button></li>
+          <li class="reveal"><button type="button" class="gallery-item" data-caption="Cabin turnaround" data-i18n-attr="data-caption:gallery.g2"><img src="assets/images/gallery/placeholder.svg" alt="Cabin turnaround" data-i18n-attr="alt:gallery.g2" width="800" height="600" loading="lazy"></button></li>
+          <li class="reveal"><button type="button" class="gallery-item" data-caption="Engine cowling detail" data-i18n-attr="data-caption:gallery.g3"><img src="assets/images/gallery/placeholder.svg" alt="Engine cowling detail" data-i18n-attr="alt:gallery.g3" width="800" height="600" loading="lazy"></button></li>
+          <li class="reveal"><button type="button" class="gallery-item" data-caption="Galley deep clean" data-i18n-attr="data-caption:gallery.g4"><img src="assets/images/gallery/placeholder.svg" alt="Galley deep clean" data-i18n-attr="alt:gallery.g4" width="800" height="600" loading="lazy"></button></li>
+          <li class="reveal"><button type="button" class="gallery-item" data-caption="Business jet detailing" data-i18n-attr="data-caption:gallery.g5"><img src="assets/images/gallery/placeholder.svg" alt="Business jet detailing" data-i18n-attr="alt:gallery.g5" width="800" height="600" loading="lazy"></button></li>
+          <li class="reveal"><button type="button" class="gallery-item" data-caption="Final quality check" data-i18n-attr="data-caption:gallery.g6"><img src="assets/images/gallery/placeholder.svg" alt="Final quality check" data-i18n-attr="alt:gallery.g6" width="800" height="600" loading="lazy"></button></li>
         </ul>
       </div>
 
-      <dialog class="lightbox" aria-label="Photo viewer">
-        <button class="lightbox-close icon-btn" type="button" aria-label="Close">&times;</button>
+      <dialog class="lightbox" aria-label="Photo viewer" data-i18n-attr="aria-label:gallery.viewer">
+        <button class="lightbox-close icon-btn" type="button" aria-label="Close" data-i18n-attr="aria-label:gallery.close">&times;</button>
         <img class="lightbox-img" src="" alt="">
         <p class="lightbox-caption"></p>
       </dialog>
@@ -407,23 +410,23 @@
     <section class="section" id="testimonials" aria-labelledby="testimonials-title">
       <div class="container">
         <div class="section-head">
-          <p class="kicker reveal">Testimonials</p>
-          <h2 class="section-title reveal" id="testimonials-title">What people say.</h2>
+          <p class="kicker reveal" data-i18n="testi.kicker">Testimonials</p>
+          <h2 class="section-title reveal" id="testimonials-title" data-i18n="testi.title">What people say.</h2>
         </div>
 
         <!-- EDIT: replace with real quotes from supervisors, colleagues or clients (ask their permission). -->
         <div class="testimonials">
           <figure class="card quote reveal">
-            <blockquote><p>"Add a real testimonial here, for example from a supervisor about your reliability and attention to detail."</p></blockquote>
-            <figcaption><strong>Name Surname</strong><span>Role, Company</span></figcaption>
+            <blockquote><p data-i18n="testi.q1">"Add a real testimonial here, for example from a supervisor about your reliability and attention to detail."</p></blockquote>
+            <figcaption><strong data-i18n="testi.name">Name Surname</strong><span data-i18n="testi.role">Role, Company</span></figcaption>
           </figure>
           <figure class="card quote reveal">
-            <blockquote><p>"Add a second testimonial here, for example from a colleague about teamwork and safety."</p></blockquote>
-            <figcaption><strong>Name Surname</strong><span>Role, Company</span></figcaption>
+            <blockquote><p data-i18n="testi.q2">"Add a second testimonial here, for example from a colleague about teamwork and safety."</p></blockquote>
+            <figcaption><strong data-i18n="testi.name">Name Surname</strong><span data-i18n="testi.role">Role, Company</span></figcaption>
           </figure>
           <figure class="card quote reveal">
-            <blockquote><p>"Add a third testimonial here, for example from a client about the quality of the finish."</p></blockquote>
-            <figcaption><strong>Name Surname</strong><span>Role, Company</span></figcaption>
+            <blockquote><p data-i18n="testi.q3">"Add a third testimonial here, for example from a client about the quality of the finish."</p></blockquote>
+            <figcaption><strong data-i18n="testi.name">Name Surname</strong><span data-i18n="testi.role">Role, Company</span></figcaption>
           </figure>
         </div>
       </div>
@@ -435,44 +438,44 @@
     <section class="section section-dark" id="contact" aria-labelledby="contact-title">
       <div class="container contact-grid">
         <div>
-          <p class="kicker reveal">Contact</p>
-          <h2 class="section-title reveal" id="contact-title">Ready for departure?</h2>
-          <p class="reveal">Tell me about your aircraft and schedule, and I'll get back to you with availability and a quote.</p>
+          <p class="kicker reveal" data-i18n="contact.kicker">Contact</p>
+          <h2 class="section-title reveal" id="contact-title" data-i18n="contact.title">Ready for departure?</h2>
+          <p class="reveal" data-i18n="contact.intro">Tell me about your aircraft and schedule, and I'll get back to you with availability and a quote.</p>
 
           <ul class="contact-info">
             <!-- EDIT: add your email and location -->
             <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><span>your.email@example.com</span></li>
-            <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>City, Country · Available to travel</span></li>
+            <li class="reveal"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span data-i18n="contact.location">City, Country · Available to travel</span></li>
           </ul>
         </div>
 
         <form class="contact-form reveal" novalidate>
           <div class="field">
-            <label for="name">Name</label>
+            <label for="name" data-i18n="form.name">Name</label>
             <input id="name" name="name" type="text" autocomplete="name" required>
             <p class="field-error" id="name-error"></p>
           </div>
           <div class="field">
-            <label for="email">Email</label>
+            <label for="email" data-i18n="form.email">Email</label>
             <input id="email" name="email" type="email" autocomplete="email" required>
             <p class="field-error" id="email-error"></p>
           </div>
           <div class="field">
-            <label for="service">Service</label>
+            <label for="service" data-i18n="form.service">Service</label>
             <select id="service" name="service">
-              <option>Aircraft Exterior Cleaning</option>
-              <option>Cabin Cleaning</option>
-              <option>Deep Cleaning</option>
-              <option>Detailing</option>
-              <option>Other / not sure</option>
+              <option data-i18n="s1.title">Aircraft Exterior Cleaning</option>
+              <option data-i18n="s2.title">Cabin Cleaning</option>
+              <option data-i18n="s3.title">Deep Cleaning</option>
+              <option data-i18n="s4.title">Detailing</option>
+              <option data-i18n="form.other">Other / not sure</option>
             </select>
           </div>
           <div class="field">
-            <label for="message">Message</label>
+            <label for="message" data-i18n="form.message">Message</label>
             <textarea id="message" name="message" rows="5" required></textarea>
             <p class="field-error" id="message-error"></p>
           </div>
-          <button class="btn btn-light btn-block" type="submit">Send message</button>
+          <button class="btn btn-light btn-block" type="submit" data-i18n="form.send">Send message</button>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -481,12 +484,13 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <p>© <span id="year"></span> Mikael Abuye · Aircraft Cleaning Specialist</p>
-      <p>Designed &amp; built by <a href="https://github.com/Mahmoud3d2y" target="_blank" rel="noopener">Mahmoud Saadaoui</a> · Hero photo via <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p>
-      <a href="#top">Back to top ↑</a>
+      <p>© <span id="year"></span> Mikael Abuye · <span data-i18n="role">Aircraft Cleaning Specialist</span></p>
+      <p data-i18n="footer.credit">Designed &amp; built by <a href="https://github.com/Mahmoud3d2y" target="_blank" rel="noopener">Mahmoud Saadaoui</a> · Hero photo via <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p>
+      <a href="#top" data-i18n="footer.top">Back to top ↑</a>
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="js/i18n.js?v=3" defer></script>
+  <script src="js/main.js?v=3" defer></script>
 </body>
 </html>

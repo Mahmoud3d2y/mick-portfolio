@@ -11,6 +11,7 @@
    7. Gallery lightbox
    8. Contact form
    9. CV button fallback
+   10. Language switch (FR / EN), texts are in js/i18n.js
    ========================================================================== */
 
 /* ==========================================================================
@@ -28,6 +29,7 @@ const SETTINGS = {
 };
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const { t } = i18n; // translate JS strings (see js/i18n.js)
 
 /* ==========================================================================
    2. Theme toggle
@@ -42,8 +44,8 @@ function activeTheme() {
 }
 
 function updateThemeLabel() {
-  const next = activeTheme() === "dark" ? "light" : "dark";
-  themeToggle.setAttribute("aria-label", `Switch to ${next} mode`);
+  const key = activeTheme() === "dark" ? "theme.toLight" : "theme.toDark";
+  themeToggle.setAttribute("aria-label", t(key));
 }
 
 themeToggle.addEventListener("click", () => {
@@ -74,7 +76,7 @@ onScroll();
 
 function setMenu(open) {
   navToggle.setAttribute("aria-expanded", String(open));
-  navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  navToggle.setAttribute("aria-label", t(open ? "menu.close" : "menu.open"));
   navLinks.classList.toggle("is-open", open);
   header.classList.toggle("menu-open", open);
 }
@@ -213,9 +215,9 @@ const form = document.querySelector(".contact-form");
 const statusEl = form.querySelector(".form-status");
 
 const validators = {
-  name: (v) => (v.trim() ? "" : "Please enter your name."),
-  email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? "" : "Please enter a valid email address."),
-  message: (v) => (v.trim().length >= 10 ? "" : "Please write a short message (at least 10 characters)."),
+  name: (v) => (v.trim() ? "" : t("err.name")),
+  email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? "" : t("err.email")),
+  message: (v) => (v.trim().length >= 10 ? "" : t("err.message")),
 };
 
 // Shows or clears the error for one field; returns true when valid
@@ -254,7 +256,7 @@ form.addEventListener("submit", async (e) => {
   if (SETTINGS.formEndpoint) {
     const button = form.querySelector("button[type=submit]");
     button.disabled = true;
-    statusEl.textContent = "Sending…";
+    statusEl.textContent = t("form.sending");
     try {
       const res = await fetch(SETTINGS.formEndpoint, {
         method: "POST",
@@ -263,9 +265,9 @@ form.addEventListener("submit", async (e) => {
       });
       if (!res.ok) throw new Error(res.statusText);
       form.reset();
-      statusEl.textContent = "Thanks! Your message has been sent. I'll be in touch soon.";
+      statusEl.textContent = t("form.sent");
     } catch (err) {
-      statusEl.textContent = "Sorry, something went wrong. Please try again later.";
+      statusEl.textContent = t("form.failed");
     } finally {
       button.disabled = false;
     }
@@ -274,14 +276,14 @@ form.addEventListener("submit", async (e) => {
 
   // Option B: open the visitor's email app with the message pre-filled
   if (SETTINGS.contactEmail) {
-    const subject = encodeURIComponent(`${data.service} enquiry from ${data.name}`);
+    const subject = encodeURIComponent(t("mail.subject", { service: data.service, name: data.name }));
     const body = encodeURIComponent(`${data.message}\n\n${data.name}\n${data.email}`);
     window.location.href = `mailto:${SETTINGS.contactEmail}?subject=${subject}&body=${body}`;
-    statusEl.textContent = "Opening your email app…";
+    statusEl.textContent = t("form.opening");
     return;
   }
 
-  statusEl.textContent = "The contact form isn't set up yet. Please check back soon.";
+  statusEl.textContent = t("form.notSetUp");
 });
 
 /* ==========================================================================
@@ -290,7 +292,11 @@ form.addEventListener("submit", async (e) => {
    "Request CV" and scrolls to the contact form instead of a broken download.
    ========================================================================== */
 const cvBtn = document.querySelector(".cv-btn");
-if (cvBtn && location.protocol !== "file:") {
+const cvLabel = cvBtn.querySelector(".cv-label");
+let cvKey = "cv.download";
+const renderCvLabel = () => (cvLabel.textContent = t(cvKey));
+
+if (location.protocol !== "file:") {
   fetch(cvBtn.getAttribute("href"), { method: "HEAD" })
     .then((res) => {
       if (!res.ok) throw new Error("missing");
@@ -298,9 +304,41 @@ if (cvBtn && location.protocol !== "file:") {
     .catch(() => {
       cvBtn.removeAttribute("download");
       cvBtn.setAttribute("href", "#contact");
-      cvBtn.querySelector("span").textContent = "Request CV";
+      cvKey = "cv.request";
+      renderCvLabel();
     });
 }
+
+/* ==========================================================================
+   10. Language switch
+   The button shows the language you can switch TO (FR in English, EN in French).
+   ========================================================================== */
+const langToggle = document.querySelector(".lang-toggle");
+
+langToggle.addEventListener("click", () => {
+  i18n.set(i18n.lang === "fr" ? "en" : "fr");
+});
+
+// Runs on load and every time the language changes
+document.addEventListener("langchange", ({ detail }) => {
+  const other = detail.lang === "fr" ? "en" : "fr";
+  langToggle.textContent = other.toUpperCase();
+  langToggle.lang = other;
+  langToggle.setAttribute("aria-label", t("lang.switch"));
+
+  updateThemeLabel();
+  setMenu(navLinks.classList.contains("is-open"));
+  renderCvLabel();
+
+  // Re-word any error messages already on screen
+  Object.keys(validators).forEach((name) => {
+    const input = form.elements[name];
+    if (input.getAttribute("aria-invalid") === "true") validateField(input);
+  });
+  statusEl.textContent = "";
+});
+
+i18n.init();
 
 /* Footer year */
 document.getElementById("year").textContent = new Date().getFullYear();
