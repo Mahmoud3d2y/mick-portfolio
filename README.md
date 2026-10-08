@@ -59,3 +59,5 @@ Then open http://localhost:8000.
 Deployed with GitHub Pages from the `main` branch (root). Every push to `main` updates the live site within a minute or two.
 
 Hero photo from [Unsplash](https://unsplash.com) (free licence).
+
+Website designed and built by Mahmoud Saadaoui (https://github.com/Mahmoud3d2y).
