@@ -285,6 +285,7 @@ button { cursor: pointer; background: none; border: 0; }
   font-weight: 800;
   font-size: 1.2rem;
   letter-spacing: 0.12em;
+  white-space: nowrap;
 }
 .logo .icon { transform: rotate(45deg); }
 
@@ -313,6 +314,24 @@ button { cursor: pointer; background: none; border: 0; }
 }
 
 .nav-actions { display: flex; align-items: center; gap: 4px; }
+
+/* FR / EN language switch */
+.lang-toggle {
+  min-width: 42px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+.lang-toggle:hover {
+  opacity: 1;
+  background: rgba(127, 150, 180, 0.16);
+}
 .icon-btn:hover { background: rgba(127, 150, 180, 0.16); }
 
 /* Theme icon: sun in light mode, moon in dark mode */
@@ -991,6 +1010,8 @@ button { cursor: pointer; background: none; border: 0; }
 }
 
 @media (max-width: 600px) {
+  .logo { font-size: 1rem; letter-spacing: 0.08em; gap: 6px; }
+  .nav-actions { gap: 2px; }
   .values-list { grid-template-columns: repeat(2, 1fr); }
   .values-list li { justify-content: flex-start; text-align: left; }
   .services-grid,
