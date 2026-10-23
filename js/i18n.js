@@ -124,6 +124,12 @@ const FR = {
   "gallery.g4": "Nettoyage approfondi de l’office",
   "gallery.g5": "Detailing d’un jet d’affaires",
   "gallery.g6": "Contrôle qualité final",
+  "gallery.filterLabel": "Filtrer les photos",
+  "gallery.f.all": "Tout",
+  "gallery.f.exterior": "Extérieur",
+  "gallery.f.cabin": "Cabine",
+  "gallery.f.detailing": "Detailing",
+  "gallery.f.quality": "Qualité",
 
   // Testimonials
   "testi.kicker": "Témoignages",
@@ -170,6 +176,8 @@ const STRINGS = {
     "form.opening": "Opening your email app…",
     "form.notSetUp": "The contact form isn't set up yet. Please check back soon.",
     "mail.subject": "{service} enquiry from {name}",
+    "gallery.showing1": "Showing 1 photo",
+    "gallery.showingN": "Showing {n} photos",
   },
   fr: {
     "lang.switch": "Switch to English",
@@ -188,6 +196,8 @@ const STRINGS = {
     "form.opening": "Ouverture de votre messagerie…",
     "form.notSetUp": "Le formulaire de contact n’est pas encore configuré. Revenez bientôt !",
     "mail.subject": "Demande de devis ({service}) de {name}",
+    "gallery.showing1": "1\u00a0photo affichée",
+    "gallery.showingN": "{n}\u00a0photos affichées",
   },
 };
 
