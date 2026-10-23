@@ -8,7 +8,7 @@
    4. Scroll reveal animations
    5. Animated statistics
    6. Before / after slider
-   7. Gallery lightbox
+   7. Gallery lightbox (+ 7b. gallery filters)
    8. Contact form
    9. CV button fallback
    10. Language switch (FR / EN), texts are in js/i18n.js
@@ -206,6 +206,63 @@ lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightb
 lightbox.addEventListener("click", (e) => {
   if (e.target === lightbox) lightbox.close();
 });
+
+/* ==========================================================================
+   7b. Gallery filters
+   Chips show/hide photos by data-category. When the browser supports the
+   View Transitions API the change animates (see "Filter animation" in CSS).
+   ========================================================================== */
+const filterBar = document.querySelector(".filter-bar");
+const filterChips = [...filterBar.querySelectorAll(".filter-chip")];
+const filterIndicator = filterBar.querySelector(".filter-indicator");
+const galleryItems = [...document.querySelectorAll(".gallery > li")];
+const galleryStatus = document.getElementById("gallery-status");
+let activeFilter = "all";
+
+const countFor = (filter) =>
+  filter === "all" ? galleryItems.length : galleryItems.filter((li) => li.dataset.category === filter).length;
+
+// Fill in the little number on each chip
+filterChips.forEach((chip) => {
+  chip.querySelector(".chip-count").textContent = countFor(chip.dataset.filter);
+});
+
+// Move the sliding pill behind the active chip
+function moveIndicator() {
+  const chip = filterChips.find((c) => c.dataset.filter === activeFilter);
+  filterIndicator.style.setProperty("--x", `${chip.offsetLeft}px`);
+  filterIndicator.style.setProperty("--y", `${chip.offsetTop}px`);
+  filterIndicator.style.setProperty("--w", `${chip.offsetWidth}px`);
+  filterIndicator.style.setProperty("--h", `${chip.offsetHeight}px`);
+}
+
+function applyFilter(filter) {
+  activeFilter = filter;
+  filterChips.forEach((chip) => chip.setAttribute("aria-pressed", String(chip.dataset.filter === filter)));
+  galleryItems.forEach((li) => {
+    li.hidden = filter !== "all" && li.dataset.category !== filter;
+    li.classList.add("is-visible"); // never leave a revealed-later photo invisible
+  });
+  moveIndicator();
+  const n = countFor(filter);
+  galleryStatus.textContent = t(n === 1 ? "gallery.showing1" : "gallery.showingN", { n });
+}
+
+filterChips.forEach((chip) => {
+  chip.addEventListener("click", () => {
+    if (chip.dataset.filter === activeFilter) return;
+    const run = () => applyFilter(chip.dataset.filter);
+    if (document.startViewTransition && !reduceMotion) document.startViewTransition(run);
+    else run();
+  });
+});
+
+// Keep the pill aligned when the layout or the language (chip widths) changes
+window.addEventListener("resize", moveIndicator, { passive: true });
+document.addEventListener("langchange", () => requestAnimationFrame(moveIndicator));
+document.fonts?.ready.then(moveIndicator);
+moveIndicator();
+requestAnimationFrame(() => filterBar.classList.add("is-ready")); // enable the glide after first placement
 
 /* ==========================================================================
    8. Contact form

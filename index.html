@@ -43,7 +43,7 @@
 
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <!-- ?v=N forces browsers to fetch fresh files: bump N whenever CSS/JS changes -->
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
 
   <!-- Runs before paint: enables animations and applies the saved theme (no flash) -->
   <script>
@@ -386,14 +386,27 @@
           <h2 class="section-title reveal" id="gallery-title" data-i18n="gallery.title">Work in focus.</h2>
         </div>
 
-        <!-- EDIT: put your photos in assets/images/gallery/ and update src + alt + caption -->
+        <!-- Filter buttons: each shows only photos whose data-category matches its data-filter.
+             Counts are filled in by main.js. -->
+        <div class="filter-bar reveal" role="group" aria-label="Filter photos" data-i18n-attr="aria-label:gallery.filterLabel">
+          <span class="filter-indicator" aria-hidden="true"></span>
+          <button type="button" class="filter-chip" data-filter="all" aria-pressed="true"><span data-i18n="gallery.f.all">All</span><span class="chip-count"></span></button>
+          <button type="button" class="filter-chip" data-filter="exterior" aria-pressed="false"><span data-i18n="gallery.f.exterior">Exterior</span><span class="chip-count"></span></button>
+          <button type="button" class="filter-chip" data-filter="cabin" aria-pressed="false"><span data-i18n="gallery.f.cabin">Cabin</span><span class="chip-count"></span></button>
+          <button type="button" class="filter-chip" data-filter="detailing" aria-pressed="false"><span data-i18n="gallery.f.detailing">Detailing</span><span class="chip-count"></span></button>
+          <button type="button" class="filter-chip" data-filter="quality" aria-pressed="false"><span data-i18n="gallery.f.quality">Quality</span><span class="chip-count"></span></button>
+        </div>
+        <p class="sr-only" id="gallery-status" role="status" aria-live="polite"></p>
+
+        <!-- EDIT: put your photos in assets/images/gallery/ and update src + alt + caption.
+             data-category must be one of: exterior, cabin, detailing, quality -->
         <ul class="gallery">
-          <li class="reveal"><button type="button" class="gallery-item" data-caption="Exterior wash" data-i18n-attr="data-caption:gallery.g1"><img src="assets/images/gallery/placeholder.svg" alt="Exterior wash" data-i18n-attr="alt:gallery.g1" width="800" height="600" loading="lazy"></button></li>
-          <li class="reveal"><button type="button" class="gallery-item" data-caption="Cabin turnaround" data-i18n-attr="data-caption:gallery.g2"><img src="assets/images/gallery/placeholder.svg" alt="Cabin turnaround" data-i18n-attr="alt:gallery.g2" width="800" height="600" loading="lazy"></button></li>
-          <li class="reveal"><button type="button" class="gallery-item" data-caption="Engine cowling detail" data-i18n-attr="data-caption:gallery.g3"><img src="assets/images/gallery/placeholder.svg" alt="Engine cowling detail" data-i18n-attr="alt:gallery.g3" width="800" height="600" loading="lazy"></button></li>
-          <li class="reveal"><button type="button" class="gallery-item" data-caption="Galley deep clean" data-i18n-attr="data-caption:gallery.g4"><img src="assets/images/gallery/placeholder.svg" alt="Galley deep clean" data-i18n-attr="alt:gallery.g4" width="800" height="600" loading="lazy"></button></li>
-          <li class="reveal"><button type="button" class="gallery-item" data-caption="Business jet detailing" data-i18n-attr="data-caption:gallery.g5"><img src="assets/images/gallery/placeholder.svg" alt="Business jet detailing" data-i18n-attr="alt:gallery.g5" width="800" height="600" loading="lazy"></button></li>
-          <li class="reveal"><button type="button" class="gallery-item" data-caption="Final quality check" data-i18n-attr="data-caption:gallery.g6"><img src="assets/images/gallery/placeholder.svg" alt="Final quality check" data-i18n-attr="alt:gallery.g6" width="800" height="600" loading="lazy"></button></li>
+          <li class="reveal" data-category="exterior" style="view-transition-name: photo-1"><button type="button" class="gallery-item" data-caption="Exterior wash" data-i18n-attr="data-caption:gallery.g1"><img src="assets/images/gallery/placeholder.svg" alt="Exterior wash" data-i18n-attr="alt:gallery.g1" width="800" height="600" loading="lazy"></button></li>
+          <li class="reveal" data-category="cabin" style="view-transition-name: photo-2"><button type="button" class="gallery-item" data-caption="Cabin turnaround" data-i18n-attr="data-caption:gallery.g2"><img src="assets/images/gallery/placeholder.svg" alt="Cabin turnaround" data-i18n-attr="alt:gallery.g2" width="800" height="600" loading="lazy"></button></li>
+          <li class="reveal" data-category="exterior" style="view-transition-name: photo-3"><button type="button" class="gallery-item" data-caption="Engine cowling detail" data-i18n-attr="data-caption:gallery.g3"><img src="assets/images/gallery/placeholder.svg" alt="Engine cowling detail" data-i18n-attr="alt:gallery.g3" width="800" height="600" loading="lazy"></button></li>
+          <li class="reveal" data-category="cabin" style="view-transition-name: photo-4"><button type="button" class="gallery-item" data-caption="Galley deep clean" data-i18n-attr="data-caption:gallery.g4"><img src="assets/images/gallery/placeholder.svg" alt="Galley deep clean" data-i18n-attr="alt:gallery.g4" width="800" height="600" loading="lazy"></button></li>
+          <li class="reveal" data-category="detailing" style="view-transition-name: photo-5"><button type="button" class="gallery-item" data-caption="Business jet detailing" data-i18n-attr="data-caption:gallery.g5"><img src="assets/images/gallery/placeholder.svg" alt="Business jet detailing" data-i18n-attr="alt:gallery.g5" width="800" height="600" loading="lazy"></button></li>
+          <li class="reveal" data-category="quality" style="view-transition-name: photo-6"><button type="button" class="gallery-item" data-caption="Final quality check" data-i18n-attr="data-caption:gallery.g6"><img src="assets/images/gallery/placeholder.svg" alt="Final quality check" data-i18n-attr="alt:gallery.g6" width="800" height="600" loading="lazy"></button></li>
         </ul>
       </div>
 
@@ -491,7 +504,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=3" defer></script>
-  <script src="js/main.js?v=3" defer></script>
+  <script src="js/i18n.js?v=4" defer></script>
+  <script src="js/main.js?v=4" defer></script>
 </body>
 </html>

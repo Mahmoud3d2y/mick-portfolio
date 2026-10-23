@@ -33,6 +33,7 @@ Everything you need to change is marked with an `EDIT:` comment in `index.html`.
 | Email and location | `index.html` → Contact section |
 | Before/after photos | Add two photos of the same spot to `assets/images/` and update both `src` values |
 | Gallery photos | Add photos to `assets/images/gallery/` and update each `src`, `alt` and `data-caption` |
+| Gallery filters | Give each photo's `<li>` a `data-category` of `exterior`, `cabin`, `detailing` or `quality`. The counts on the filter buttons update automatically. |
 | CV | Save it as `assets/cv/mick-cv.pdf`. The button switches from "Request CV" to "Download CV" automatically. |
 | Contact form | `js/main.js` → `SETTINGS` (see below) |
 
